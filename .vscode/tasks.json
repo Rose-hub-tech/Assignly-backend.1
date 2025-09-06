@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "test",
+			"path": "assignly-backend",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "npm: test - assignly-backend",
+			"detail": "echo \"Error: no test specified\" && exit 1"
+		}
+	]
+}
