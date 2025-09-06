@@ -108,7 +108,11 @@ app.post(
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://127.0.0.1:5500",
+    origin: [
+        "http://127.0.0.1:5500",  // for local dev
+        "https://rose-hub-tech.github.io/Assignly-frontend/" // for GitHub Pages frontend
+    ],
+
     credentials: true,
 }));
 
@@ -157,5 +161,6 @@ app.get("/", (_req, res) => res.send("✅ Assignly Backend is running 🚀"));
 
 // --- Start ---
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running on port https://localhost ${PORT}`);
+
 });
