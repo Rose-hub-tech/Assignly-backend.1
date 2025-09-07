@@ -6,16 +6,23 @@ export const handlePayPalWebhook = async (req, res) => {
     try {
         console.log("PayPal webhook event received:", req.body);
 
-        const { id, status, plan_id, subscriber } = req.body;
+        const { id, status, plan_id, subscriber, custom_id } = req.body;
 
-        const newSubscription = new Subscription({
-            paypalId: id,
-            status: status,
-            planid: plan_id,
-            subscriberEmail: subscriber.email_address,
+        const subscription = await Subscription.findOneAndUpdate(
+            { paypalId: id },
+            {
+                status,
+                planid: plan_id,
+                subscriberEmail: subscriber.email_address,
+                userId: custom_id  // ✅ link PayPal sub to your user
+            },
+            { upsert: true, new: true }
+        );
+
+        await User.findByIdAndUpdate(custom_id, {
+            subscription: subscription._id
         });
 
-        await newSubscription.save();
 
         console.log("Subscription saved successfully!");
         res.sendStatus(200);
