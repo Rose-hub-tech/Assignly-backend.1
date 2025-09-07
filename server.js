@@ -109,12 +109,12 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin: [
-        "http://127.0.0.1:5500",  // for local dev
-        "https://rose-hub-tech.github.io/Assignly-frontend/" // for GitHub Pages frontend
+        "https://rose-hub-tech.github.io",  // ✅ works for your frontend
+        "http://127.0.0.1:5500"             // ✅ local dev
     ],
-
-    credentials: true,
+    credentials: true
 }));
+
 
 
 app.use(
@@ -124,9 +124,10 @@ app.use(
         saveUninitialized: false,
         cookie: {
             httpOnly: true,
-            secure: NODE_ENV === "production",
-            sameSite: "lax",
-        },
+            secure: NODE_ENV === "production", // secure cookies only in production
+            sameSite: NODE_ENV === "production" ? "none" : "lax"
+        }
+
     })
 );
 
@@ -161,6 +162,6 @@ app.get("/", (_req, res) => res.send("✅ Assignly Backend is running 🚀"));
 
 // --- Start ---
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on port https://localhost ${PORT}`);
+    console.log(`🚀 Server running on port ${PORT}`);
 
 });
