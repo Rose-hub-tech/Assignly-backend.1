@@ -71,7 +71,7 @@ export const registerUser = async (req, res) => {
 
         // Don't send a token yet, just a success message
         res.status(201).json({
-            message: "Registration successful. A verification code has been sent to your email.",
+            message: "By clicking OK, You agree to the terms of service.",
         });
     } catch (err) {
         console.error("❌ Registration error:", err);
