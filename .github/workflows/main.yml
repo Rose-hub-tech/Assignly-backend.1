@@ -1,4 +1,4 @@
-name: deploy JohnAriando
+name: deploy rockelNord
 
 on:
   push:
