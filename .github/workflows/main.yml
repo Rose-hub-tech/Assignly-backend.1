@@ -1,4 +1,4 @@
-name: deploy BearLingXue
+name: deploy ZilongNim
 
 on:
   push:
