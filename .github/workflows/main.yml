@@ -1,4 +1,4 @@
-name: deploy MingSuNim
+name: deploy FuHaiFeng
 
 on:
   push:
