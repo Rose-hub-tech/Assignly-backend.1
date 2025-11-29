@@ -1,4 +1,4 @@
-name: deploy KeisukeHonda
+name: deploy InazumaEleven
 
 on:
   push:
